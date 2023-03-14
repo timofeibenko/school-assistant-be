@@ -1,18 +1,13 @@
 import { Request, Response, Router } from 'express';
 import bcrypt from 'bcrypt';
+import { validatePayload } from '../../middleware/validate-payload';
 import { generateResponseBody } from '../../utils';
 import { TUserRequest, ZUserRequest, User } from './user.schema';
 
 const router = Router();
 
 // TODO: implement admin-only access to this endpoint
-router.route('/user').post(async (req: Request, res: Response) => {
-	const schemaValidation = ZUserRequest.safeParse(req.body);	
-	
-	if (!schemaValidation.success) {
-		return res.status(409).json(generateResponseBody(schemaValidation.error));
-	}
-
+router.route('/user').post(validatePayload(ZUserRequest), async (req: Request, res: Response) => {
 	try {
 		const { password, ...rest }: TUserRequest = req.body;
 
