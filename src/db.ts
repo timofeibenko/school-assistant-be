@@ -1,14 +1,12 @@
 import mongoose from 'mongoose';
+import { User } from './resources/user/user.schema';
 
 export const createDbConnection = async (): Promise<void> => {
 	try {
-		await mongoose.connect(process.env.MONGODB_ADDON_URI);
-		console.log('Mongoose is connected');
+		await mongoose.connect(process.env.MONGODB_ADDON_URI as string);
+		await User.createCollection();
+		console.log('Connected to the database');
 	} catch (e) {
-		console.log('Mongoose was unable to connect', e);
+		console.log('Database connection error:', e);
 	}
-  
-	const dbConnection = mongoose.connection;
-	dbConnection.on('error', (err) => console.log(`Connection error ${err}`));
-	dbConnection.once('open', () => console.log('Connected to DB!'));
 };
