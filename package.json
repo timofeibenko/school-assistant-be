@@ -16,10 +16,10 @@
 		"@typescript-eslint/parser": "^5.54.1",
 		"eslint": "^8.35.0",
 		"nodemon": "^2.0.21",
-		"ts-node": "10.7.0",
 		"typescript": "4.5.2"
 	},
 	"dependencies": {
+		"ts-node": "10.7.0",
 		"bcrypt": "^5.1.0",
 		"body-parser": "^1.19.1",
 		"cors": "^2.8.5",
@@ -31,7 +31,10 @@
 		"zod": "^3.21.4"
 	},
 	"scripts": {
-		"start": "ts-node src/index.ts",
+		"start": "rm -rf ./build && tsc src/*.ts && node ./build/index.js",
 		"start:dev": "nodemon"
+	},
+	"engines": {
+		"node": "16.14.2"
 	}
 }
