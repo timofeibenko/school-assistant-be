@@ -19,7 +19,9 @@ createDbConnection().then(() => {
 	app.use(BASE_API_URL, validateSession);
 	app.use(BASE_API_URL, userRouter);
 
-	app.listen(process.env.PORT, () => {
+	const PORT = process.env.PORT ? parseInt(process.env.PORT) : 8080; 
+
+	app.listen(PORT, '0.0.0.0', () => {
 		console.log(`Express server has started on port ${process.env.PORT}`);
 	});
 });
