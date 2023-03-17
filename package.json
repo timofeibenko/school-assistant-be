@@ -31,7 +31,7 @@
 		"zod": "^3.21.4"
 	},
 	"scripts": {
-		"start": "rm -rf ./build && tsc src/*.ts && node ./build/index.js",
+		"start": "tsc && node ./dist/index.js",
 		"start:dev": "nodemon"
 	},
 	"engines": {
