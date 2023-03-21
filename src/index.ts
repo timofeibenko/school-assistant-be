@@ -5,6 +5,7 @@ import cors from 'cors';
 import { createDbConnection } from './db';
 import { userRouter } from './resources/user/user.router';
 import { authRouter } from './resources/auth/auth.router';
+import { homeworkRouter } from './resources/homework/homework.router';
 import { validateSession } from './middleware/validate-session';
 
 const BASE_API_URL = '/api';
@@ -18,6 +19,7 @@ createDbConnection().then(() => {
 	app.use(BASE_API_URL, authRouter);
 	app.use(BASE_API_URL, validateSession);
 	app.use(BASE_API_URL, userRouter);
+	app.use(BASE_API_URL, homeworkRouter);
 
 	const PORT = process.env.PORT ? parseInt(process.env.PORT) : 8080; 
 
