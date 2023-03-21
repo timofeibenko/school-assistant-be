@@ -31,7 +31,6 @@ const ZUser = ZUserBase.extend({
 type TUser = z.infer<typeof ZUser>;
 type TUserRequest = z.infer<typeof ZUserRequest>;
 
-// eslint-disable-next-line
 interface IUserDocument extends Document, TUser {}
 
 const userSchema = new Schema<IUserDocument>({

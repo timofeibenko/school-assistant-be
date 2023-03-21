@@ -12,16 +12,12 @@ router.route('/auth').post(validatePayload(ZAuthRequest), async (req: Request, r
 	const { email, password }: TAuthRequest = req.body;
 
 	const requestedUser = await User.findOne({ email });
-	console.log(requestedUser);
-	
 
 	if (!requestedUser) {
 		return res.status(404).json(generateResponseBody('User does not exist'));
 	}
 
 	const { passwordHash } = requestedUser;
-
-	console.log(requestedUser);
 
 	try {
 		const isValidPassword = await bcrypt.compare(password, passwordHash);
