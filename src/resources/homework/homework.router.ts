@@ -24,7 +24,7 @@ router.route('/homework/:classCode').get(async(req: Request, res: Response) => {
 			return res.status(409).json(generateResponseBody('classCode request parameter is missing'));
 		}
 						
-		const homework = await Homework.findOne({ classCode });	
+		const homework = await Homework.find({ classCode });	
 
 		return res.status(200).json({
 			...generateResponseBody(),
